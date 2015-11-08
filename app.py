@@ -13,13 +13,7 @@ def home():
 @app.route('/map')
 def mapPage():
     coords =[
-    {"latitude":100,"longitude":100},
-    {"latitude":200,"longitude":100},
-    {"latitude":300,"longitude":100},
-    {"latitude":400,"longitude":100},
-    {"latitude":500,"longitude":100},
-    {"latitude":-100,"longitude":100},
-    {"latitude":-200,"longitude":100},
+    {"latitude":40.6,"longitude":-73.9}
     ]
 
     return render_template("map.html", coords=coords, API_KEY=API_KEY )
