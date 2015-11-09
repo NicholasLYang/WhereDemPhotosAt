@@ -2,13 +2,10 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import user
 import urllib2, json
 
-<<<<<<< HEAD
-API_KEY="AIzaSyDbrIKnZ-fJcUxd636duQL8khuiekjC5pQ"
+gKey ="AIzaSyDbrIKnZ-fJcUxd636duQL8khuiekjC5pQ"
 
-=======
 
 fKey = '20dd8b0f53a96c73c31c2f9ec7a22c9f'
->>>>>>> FlickrApi
 app = Flask(__name__)
 
 @app.route('/')
@@ -30,7 +27,7 @@ def mapPage():
     {"latitude":41,"longitude":-74}
     ]
 
-    return render_template("map.html", coords=coords, API_KEY=API_KEY )
+    return render_template("map.html", coords=coords, API_KEY=gKey )
 
 
 
@@ -38,9 +35,9 @@ def mapPage():
 
 @app.route('/test')
 def getFlickrInfo():
-    
+
     return render_template("location.html", longitude = longitude, latitude=latitude)
-    
+
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = "gP_3.hV[KE-P@|{pE5+Iv+m}"
