@@ -21,7 +21,6 @@ def home():
 
 @app.route('/test')
 def getFlickrInfo():
-
     
     return render_template("location.html", longitude = longitude, latitude=latitude)
     
