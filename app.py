@@ -5,7 +5,6 @@ import utils
 
 gKey ="AIzaSyDbrIKnZ-fJcUxd636duQL8khuiekjC5pQ"
 fKey = '20dd8b0f53a96c73c31c2f9ec7a22c9f'
-
 app = Flask(__name__)
 @app.route('/')
 @app.route('/home', methods = ['GET', 'POST'])
@@ -22,12 +21,7 @@ def home():
 @app.route('/map', methods=["GET","POST"])
 def mapPage():
     
-    photos = utils.searchPhotos(session['Number'], session['Tag'], session['LatLng'])
-    coords = utils.findLocation(photos)
-    
 
-    return render_template("map.html", photos=photos, gKey = gKey )
-'''
     if request.method == "POST":
         form = request.form
         photos = utils.findLocation(utils.searchPhotos(form["Number"], form["Tag"], utils.getLatLng(form['Address']) ) )
@@ -39,10 +33,6 @@ def mapPage():
         {"latitude":41,"longitude":-74}
         ]
         return render_template("map.html", photos=photos, API_KEY=gKey)
-'''
-
-
-
 
 
 
