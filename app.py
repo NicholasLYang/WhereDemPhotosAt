@@ -5,8 +5,6 @@ import utils
 
 gKey ="AIzaSyDbrIKnZ-fJcUxd636duQL8khuiekjC5pQ"
 fKey = '20dd8b0f53a96c73c31c2f9ec7a22c9f'
-
->>>>>>> master
 app = Flask(__name__)
 
 @app.route('/')
