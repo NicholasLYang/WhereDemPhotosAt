@@ -10,11 +10,9 @@
 
 {% block script %}
 <script type="text/javascript">
-
-var CenterLatLng = {lat:{{coords[0]['latitude']}}, lng:{{coords[0]['longitude']}}};
+var CenterLatLng = { lat: {{ photos[0]['lat'] }} , lng: {{ photos[0]['lng'] }} };
 var map;
 var markers=[];
-
 
 function initMap(){
   map = new google.maps.Map(document.getElementById('map'),{
@@ -23,16 +21,15 @@ function initMap(){
   });
   addMarkers();
 }
-
 function addMarkers(){
-  var i = 0;
-  var MarkerLatLng;
-  {% for coord in coords %}
-  markerLatLng = { lat : {{ coord['latitude'] }} , lng : {{ coord['longitude'] }} };
+  var markerLatLng;
+  {% for photo in photos %}
+  console.log("{{photo}}")
+  markerLatLng = { lat : {{ photo['lat'] }} , lng : {{ photo['lng'] }} };
   markers.push(new google.maps.Marker({
     position:markerLatLng,
     map:map,
-    title:(i++).toString(),
+    title:"{{ photo['title'] }}",
     animation:google.maps.Animation.DROP
   }));
   {% endfor %}
@@ -44,5 +41,5 @@ function addMarkers(){
 }
 </script>
 
-<script async defer src ="https://maps.googleapis.com/maps/api/js?key={{API_KEY}}&callback=initMap"></script>
+<script async defer src ="https://maps.googleapis.com/maps/api/js?key={{gKey}}&callback=initMap"></script>
 {% endblock %}
