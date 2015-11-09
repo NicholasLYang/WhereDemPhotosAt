@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-import user
+import user, utils
 import urllib2, json
 
 
@@ -13,32 +13,31 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/home')
 def home():
-     if request.method == "POST":
-        tag = request.form['Tag']
-        session['Longitude'] = request['Longitude']
-        session['Latitude'] = request['Latitude']
-        session['Number'] = request['Number']
-        return url_for(getFlickrInfo())
+    if request.method == "POST":
+        session['Tag'] = request.form['Tag']
+        session['Longitude'] = request.form['Longitude']
+        session['Latitude'] = request.form['Latitude']
+        session['Number'] = request.form['Number']
+        return url_for(mapPage())
     else:
         return render_template("home.html")
 
 @app.route('/map')
 def mapPage():
-    coords =[
+    photos = utils.searchPhotos(session['Number'], session['Tag'], session['Latitude'], session['Longitude'])
+    coords = utils.findLocation(photos)
+    
+    ''' coords =[
     {"latitude":40.6,"longitude":-73.9},
     {"latitude":41,"longitude":-74}
     ]
-
+    '''
     return render_template("map.html", coords=coords, gKey = gKey )
 
 
 
 
 
-@app.route('/test')
-def getFlickrInfo():
-    
-    return render_template("location.html", longitude = longitude, latitude=latitude)
     
 if __name__ == "__main__":
     app.debug = True
