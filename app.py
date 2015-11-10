@@ -21,7 +21,7 @@ def mapPage():
         photos = utils.findLocation(utils.searchPhotos(form["Number"], form["Tag"], utils.getLatLng(form['Address']) ) )
         return render_template("map.html", photos=photos, API_KEY=gKey)
     else:
-        coords =[
+        photos =[
         {"latitude":40.6,"longitude":-73.9},
         {"latitude":41,"longitude":-74}
         ]
