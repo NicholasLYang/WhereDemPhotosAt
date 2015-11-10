@@ -28,7 +28,6 @@ def mapPage():
         return render_template("map.html", photos=photos, API_KEY=gKey)
 
 
-
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = "gP_3.hV[KE-P@|{pE5+Iv+m}"
