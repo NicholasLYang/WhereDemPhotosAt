@@ -28,10 +28,6 @@ def mapPage():
         return render_template("map.html", photos=photos, API_KEY=gKey)
 
 
-@app.route('/test')
-def getFlickrInfo():
-
-    return render_template("location.html", longitude = longitude, latitude=latitude)
 
 if __name__ == "__main__":
     app.debug = True
