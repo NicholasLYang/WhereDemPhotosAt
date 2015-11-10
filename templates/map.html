@@ -1,8 +1,13 @@
 {% extends "master.html" %}
-
-
 {% block title %}Send Coords, get Map!{% endblock %}
 {% block body %}
+
+<!-- <form action="/map" method="POST">
+  Picture?: <input type="text" name="Tag" placeholder="tag" required> <br>
+  Address : <input type = "text" name = "Address" placeholder = "345 Chambers Street" required> <br>
+  Number of Photos: <input type="number" name="Number">  <br>
+  <input type="submit" name="button" value ="submit" class ="button">
+</form> -->
 
 <div id="map"></div>
 
@@ -19,26 +24,42 @@ function initMap(){
     center: CenterLatLng,
     zoom:12
   });
-  addMarkers();
+  addPhotos();
 }
-function addMarkers(){
-  var markerLatLng;
+function addPhotos(){
+  var contentstring = ""
+  var infoWindow, marker, markerLatLng;
+  var bounds = new google.maps.LatLngBounds();
   {% for photo in photos %}
-  console.log("{{photo}}")
+  contentstring = '<img src="{{ photo['url'] }}"></img>'
   markerLatLng = { lat : {{ photo['lat'] }} , lng : {{ photo['lng'] }} };
-  markers.push(new google.maps.Marker({
+  infoWindow = new google.maps.InfoWindow({
+    content:contentstring
+  })
+  marker = new google.maps.Marker({
     position:markerLatLng,
     map:map,
     title:"{{ photo['title'] }}",
-    animation:google.maps.Animation.DROP
-  }));
+    animation:google.maps.Animation.DROP,
+    infowindow:infoWindow
+  });
+  bounds.extend(marker.getPosition());
+  markers.push(marker);
   {% endfor %}
-  var bounds = new google.maps.LatLngBounds();
-  for(i = 0; i < markers.length; i++){
-    bounds.extend(markers[i].getPosition());
-  }
   map.fitBounds(bounds);
+  addClickers();
 }
+function addClickers(){
+  for( i = 0; i < markers.length ; i++){
+    google.maps.event.addListener(markers[i], 'mouseover', function(){
+      this.infowindow.open(map,this);
+    });
+    google.maps.event.addListener(markers[i], 'mouseout', function(){
+      this.infowindow.close(map,this);
+    });
+  }
+}
+
 </script>
 
 <script async defer src ="https://maps.googleapis.com/maps/api/js?key={{gKey}}&callback=initMap"></script>

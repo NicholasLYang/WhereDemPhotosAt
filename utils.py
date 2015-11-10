@@ -6,7 +6,6 @@ gKey ="AIzaSyDbrIKnZ-fJcUxd636duQL8khuiekjC5pQ"
 def getLatLng(address):
     uri = "https://maps.googleapis.com/maps/api/geocode/json?key=%(key)s&address=%(address)s"
     url = uri%({ "key":gKey, "address":address.replace(' ', '%20') })
-    print url
     request = urllib2.urlopen(url)
     result = json.loads(request.read())
     return result['results'][0]['geometry']['location']
@@ -26,8 +25,16 @@ def searchPhotos(number, tag, latlng):
         a['user'] = key['owner']
         a['photo_id'] = key['id']
         a['title'] = key['title']
+        a['farm'] = key['farm']
+        a['server'] = key['server']
+        a['secret'] = key['secret']
         out.append(a)
     return out
+
+def getPhotoUrl(farm, server, id, secret):
+    uri = "https://farm%(farm)s.staticflickr.com/%(server)s/%(id)s_%(secret)s.jpg"
+    url = uri%({ "farm":farm, "server":server, "id":id, "secret": secret })
+    return url
 
 def findLocation(a):
 # Takes the list from function above and returns list of dictionaries with format 'title':title, 'longitude':longitude, 'latitude':latitude
@@ -44,5 +51,7 @@ def findLocation(a):
         d['lng'] = translated['photo']['location']['longitude']
         d['lat'] = translated['photo']['location']['latitude']
         d['title'] = photo['title']
+        d['id'] = photo['photo_id']
+        d['url'] = getPhotoUrl(photo['farm'], photo['server'], photo['photo_id'], photo['secret'])
         out.append(d)
     return out
