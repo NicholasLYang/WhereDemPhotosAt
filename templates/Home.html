@@ -1,11 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html> <head>
-<title>Welcome to WhereDemPhotosAt</title>
-</head>
-
-<body>
+{% block title %}
+WhereDemPhotosAt?
+{% endblock %}
 <h1>Find where photos are taken</h1>
 
+{% block body %}
 
 <form action="/map" method="POST">
 <input type="text" name="Tag" placeholder="tag" required>
@@ -20,8 +18,4 @@
 <input type="submit" name="button" value ="submit" class ="button">
 </form>
 
-
-<hr>
-<address></address>
-<!-- hhmts start -->Last modified: Mon Nov  9 16:45:53 EST 2015 <!-- hhmts end -->
-</body> </html>
+{% endblock %}
