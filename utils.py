@@ -11,11 +11,11 @@ def getLatLng(address):
     return result['results'][0]['geometry']['location']
 
 
-def searchPhotos(number, tag, latlng):
+def searchPhotos(number, tag, latlng, radius):
 # Takes the number of photos, the Flickr api key, the tag and a location, then returns a list of dictionaries with the format 'title':title, 'photo_id':photo_id,
     method = 'flickr.photos.search'
-    uri = 'https://api.flickr.com/services/rest/?format=json&nojsoncallback=1&has_geo=1&method=%s&per_page=%s&api_key=%s&tag=%s&lat=%s&lon=%s'
-    url = uri%(method, number, fKey, tag, latlng['lat'], latlng['lng'])
+    uri = 'https://api.flickr.com/services/rest/?format=json&nojsoncallback=1&has_geo=1&method=%s&per_page=%s&api_key=%s&tag=%s&lat=%s&lon=%s&radius=%s'
+    url = uri%(method, number, fKey, tag, latlng['lat'], latlng['lng'], radius)
     request = urllib2.urlopen(url)
     result = request.read()
     translated = json.loads(result)
