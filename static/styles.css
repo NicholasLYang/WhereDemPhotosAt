@@ -2,8 +2,18 @@ html,body{
   height:100%;
   margin:0;
   padding:0;
+  line-height:200%;
 }
 
 #map{
   height:100%;
+}
+
+form{
+  padding-right:70%;
+  text-align:right;
+}
+
+#number, #radius{
+  line-height:100%;
 }
