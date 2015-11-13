@@ -15,16 +15,22 @@
 
 {% block script %}
 <script type="text/javascript">
+{% if photos %}
 var CenterLatLng = { lat: {{ photos[0]['lat'] }} , lng: {{ photos[0]['lng'] }} };
+{% elif address %}
+var CenterLatLng = { lat: {{ address['lat'] }}, lng: {{ address['lng'] }} };
+{% endif %}
 var map;
 var markers=[];
 
 function initMap(){
   map = new google.maps.Map(document.getElementById('map'),{
-    center: CenterLatLng,
+    center:CenterLatLng,
     zoom:12
   });
+{% if photos %}
   addPhotos();
+{% endif %}
 }
 function addPhotos(){
   var contentstring = ""
@@ -34,7 +40,8 @@ function addPhotos(){
   contentstring = '<img src="{{ photo['url'] }}"></img>'
   markerLatLng = { lat : {{ photo['lat'] }} , lng : {{ photo['lng'] }} };
   infoWindow = new google.maps.InfoWindow({
-    content:contentstring
+    content:contentstring,
+    disableAutoPan:true
   })
   marker = new google.maps.Marker({
     position:markerLatLng,
