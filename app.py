@@ -26,13 +26,16 @@ def mapPage():
         searchphotos = utils.searchPhotos(number, tag, latlng, radius)
         photos = utils.findLocation(searchphotos)
         photos = utils.checkfordupe(photos)
-        return render_template("map.html", photos=photos, API_KEY=gKey)
+        if len(searchphotos) == 0:
+            center = utils.getLatLng(form['Address'])
+            return render_template("map.html", address=center, API_KEY=gKey)
+        if len(searchphotos) < int(number):
+            error = "Only " + len(searchphotos) + " photos were found"
+            return render_template("map.html", photos=photos, error=error, API_KEY=gKey)
+        else:
+            return render_template("map.html", photos=photos, API_KEY=gKey)
     else:
-        photos =[
-        {"latitude":40.6,"longitude":-73.9},
-        {"latitude":41,"longitude":-74}
-        ]
-        return render_template("map.html", photos=photos, API_KEY=gKey)
+        return url_for(home())
 
 
 if __name__ == "__main__":
