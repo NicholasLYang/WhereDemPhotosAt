@@ -2,7 +2,7 @@
 {% block title %}Send Coords, get Map!{% endblock %}
 {% block body %}
 {% if error %}
-  <h3>{{error}}</h3> 
+  <h3>{{error}}</h3>
 {% endif %}
 <!-- <form action="/map" method="POST">
   Picture?: <input type="text" name="Tag" placeholder="tag" required> <br>
@@ -35,11 +35,13 @@ function initMap(){
 {% endif %}
 }
 function addPhotos(){
-  var contentstring = ""
   var infoWindow, marker, markerLatLng;
   var bounds = new google.maps.LatLngBounds();
   {% for photo in photos %}
-  contentstring = '<img src="{{ photo['url'] }}"></img>'
+    var contentstring = ""
+    {% for uri in photo['url'] %}
+    contentstring += '<img src="{{ uri }}"></img>'
+    {% endfor %}
   markerLatLng = { lat : {{ photo['lat'] }} , lng : {{ photo['lng'] }} };
   infoWindow = new google.maps.InfoWindow({
     content:contentstring,
@@ -63,7 +65,8 @@ function addClickers(){
     google.maps.event.addListener(markers[i], 'mouseover', function(){
       this.infowindow.open(map,this);
     });
-    google.maps.event.addListener(markers[i], 'mouseout', function(){
+    google.maps.event.addListener(markers[i], 'mouseclick', function(){
+      if this.infowindow()
       this.infowindow.close(map,this);
     });
   }
