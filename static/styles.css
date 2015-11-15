@@ -1,7 +1,8 @@
 html,body{
-    height:100%;
-    margin:0;
-    padding:0;
+  height:100%;
+  margin:0;
+  padding:0;
+  line-height:200%;
 }
 
 #map{
@@ -9,12 +10,10 @@ html,body{
 }
 
 form{
-    color: 0000FF;
-    background-color: 33FF66;
-    width: 500px;
-    height: 500px;
+  padding-right:70%;
+  text-align:right;
 }
 
-input{
-    color: rgb(15,15,100);
+#number, #radius{
+  line-height:100%;
 }

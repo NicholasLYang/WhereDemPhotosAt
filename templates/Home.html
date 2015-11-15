@@ -1,21 +1,36 @@
+{% extends "master.html" %}
 {% block title %}
-WhereDemPhotosAt?
+WhereDemPhotosAt
 {% endblock %}
+{% block body %}
 <h1>Find where photos are taken</h1>
 
-{% block body %}
-
-<form action="/map" method="POST" id="tag-address">
-<input type="text" name="Tag" placeholder="tag" required>
-<br> 
-<input type = "text" name = "Address" placeholder = "Address" required>
-
-<br> <br>
-<form>
-  Number of Photos
-<input type="number" name="Number" min="1" max="10">
-<br>
+<form action="/map" method="POST">
+Tag: <input type="text" name="Tag" placeholder="tag"><br>
+Address: <input type = "text" name = "Address" placeholder = "Address" required><br>
+Number of Photos: <input type="range" id = "numberslider" name="Number" min="1" max="20" Value="1"><div id="number">1 photo</div><br>
+Radius: <input type="range" id = "radiusslider" name="Radius" min="1" max="32" Value="1"><div id="radius">1 km</div><br>
 <input type="submit" name="button" value ="submit" class ="button">
 </form>
 
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+var numberslider = document.getElementById("numberslider");
+var number = document.getElementById("number");
+var end = ""
+numberslider.addEventListener('mousemove', function(){
+  if (this.value == 1) end = " photo";
+  else end = " photos"
+  number.innerHTML = this.value + end;
+});
+
+var radiusslider = document.getElementById("radiusslider");
+var radius = document.getElementById("radius");
+radiusslider.addEventListener('mousemove',function(){
+  radius.innerHTML = this.value + " km";
+});
+
+</script>
 {% endblock %}
