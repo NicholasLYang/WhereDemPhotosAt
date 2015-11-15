@@ -5,12 +5,12 @@ WhereDemPhotosAt?
 
 {% block body %}
 
-<form action="/map" method="POST">
+<form action="/map" method="POST" id="tag-address">
 <input type="text" name="Tag" placeholder="tag" required>
-<br>
+<br> 
 <input type = "text" name = "Address" placeholder = "Address" required>
 
-<br>
+<br> <br>
 <form>
   Number of Photos
 <input type="number" name="Number" min="1" max="10">
