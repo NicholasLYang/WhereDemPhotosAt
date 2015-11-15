@@ -27,11 +27,13 @@ function initMap(){
   addPhotos();
 }
 function addPhotos(){
-  var contentstring = ""
   var infoWindow, marker, markerLatLng;
   var bounds = new google.maps.LatLngBounds();
   {% for photo in photos %}
-  contentstring = '<img src="{{ photo['url'] }}"></img>'
+    var contentstring = ""
+    {% for uri in photo['url'] %}
+    contentstring += '<img src="{{ uri }}"></img>'
+    {% endfor %}
   markerLatLng = { lat : {{ photo['lat'] }} , lng : {{ photo['lng'] }} };
   infoWindow = new google.maps.InfoWindow({
     content:contentstring
@@ -54,7 +56,7 @@ function addClickers(){
     google.maps.event.addListener(markers[i], 'mouseover', function(){
       this.infowindow.open(map,this);
     });
-    google.maps.event.addListener(markers[i], 'mouseout', function(){
+    google.maps.event.addListener(markers[i], 'mouseclick', function(){
       this.infowindow.close(map,this);
     });
   }

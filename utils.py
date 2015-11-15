@@ -55,3 +55,17 @@ def findLocation(a):
         d['url'] = getPhotoUrl(photo['farm'], photo['server'], photo['photo_id'], photo['secret'])
         out.append(d)
     return out
+
+def checkfordupe( photolist ):
+    for photo in photolist:
+        photo['url'] = [photo['url']]
+        i = 0
+        while i < len(photolist):
+            cphoto = photolist[i]
+            if photo['lng'] == cphoto['lng'] and photo['lat'] == cphoto['lat'] and photo['url'] != cphoto['url']:
+                photo['title'] += " " + cphoto['title']
+                photo['url'].append(cphoto['url'])
+                photolist.pop(i)
+            else:
+                i+= 1
+    return photolist

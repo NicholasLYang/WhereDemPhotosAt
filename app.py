@@ -18,7 +18,14 @@ def mapPage():
     print "hello"
     if request.method == "POST":
         form = request.form
-        photos = utils.findLocation(utils.searchPhotos(form["Number"], form["Tag"], utils.getLatLng(form['Address']), form["Radius"] ) )
+        number = form["Number"]
+        tag = form["Tag"]
+        addr = form['Address']
+        radius = form['Radius']
+        latlng = utils.getLatLng(addr)
+        searchphotos = utils.searchPhotos(number, tag, latlng, radius)
+        photos = utils.findLocation(searchphotos)
+        photos = utils.checkfordupe(photos)
         return render_template("map.html", photos=photos, API_KEY=gKey)
     else:
         photos =[
