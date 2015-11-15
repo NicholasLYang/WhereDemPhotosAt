@@ -1,7 +1,9 @@
 {% extends "master.html" %}
 {% block title %}Send Coords, get Map!{% endblock %}
 {% block body %}
-
+{% if error %}
+  <h3>{{error}}</h3> 
+{% endif %}
 <!-- <form action="/map" method="POST">
   Picture?: <input type="text" name="Tag" placeholder="tag" required> <br>
   Address : <input type = "text" name = "Address" placeholder = "345 Chambers Street" required> <br>
