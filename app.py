@@ -15,10 +15,8 @@ def home():
 
 @app.route('/map', methods=["GET","POST"])
 def mapPage():
-'''
-Takes the info from the form, uses it to search through flickr, then takes these locations and puts them in the map. If there's no photos, the map just returns the address
-If there's less photos than expected, an error messgae is sent to map.html
-'''
+
+    """ Takes the info from the form, uses it to search through flickr, then takes these locations and puts them in the map. If there's no photos, the map just returns the address If there's less photos than expected, an error message is sent to map.html """
     if request.method == "POST":
         form = request.form
         number = form["Number"]
