@@ -21,13 +21,19 @@ If there's less photos than expected, an error messgae is sent to map.html
 '''
     if request.method == "POST":
         form = request.form
-        print form["Number"]
-        photos = utils.findLocation(utils.searchPhotos(str(int(form["Number"]) + 1), form["Tag"], utils.getLatLng(form['Address']), form["Radius"] ) )
-        if len(photos) == 0:
+        number = form["Number"]
+        tag = form["Tag"]
+        addr = form['Address']
+        radius = form['Radius']
+        latlng = utils.getLatLng(addr)
+        searchphotos = utils.searchPhotos(number, tag, latlng, radius)
+        photos = utils.findLocation(searchphotos)
+        photos = utils.checkfordupe(photos)
+        if len(searchphotos) == 0:
             center = utils.getLatLng(form['Address'])
             return render_template("map.html", address=center, API_KEY=gKey)
-        if len(photos) < form['Number']:
-            error = "Only " + form['Number'] + " photos were found"
+        if len(searchphotos) < int(number):
+            error = "Only " + len(searchphotos) + " photos were found"
             return render_template("map.html", photos=photos, error=error, API_KEY=gKey)
         else:
             return render_template("map.html", photos=photos, API_KEY=gKey)

@@ -17,7 +17,6 @@ def searchPhotos(number, tag, latlng, radius):
     method = 'flickr.photos.search'
     uri = 'https://api.flickr.com/services/rest/?format=json&nojsoncallback=1&has_geo=1&method=%s&per_page=%s&api_key=%s&tags=%s&lat=%s&lon=%s&radius=%s&min_taken_date=%s'
     url = uri%(method, number, fKey, tag, latlng['lat'], latlng['lng'], radius, 1388534400)
-    print url
     request = urllib2.urlopen(url)
     result = request.read()
     translated = json.loads(result)
@@ -57,3 +56,17 @@ def findLocation(a):
         d['url'] = getPhotoUrl(photo['farm'], photo['server'], photo['photo_id'], photo['secret'])
         out.append(d)
     return out
+
+def checkfordupe( photolist ):
+    for photo in photolist:
+        photo['url'] = [photo['url']]
+        i = 0
+        while i < len(photolist):
+            cphoto = photolist[i]
+            if photo['lng'] == cphoto['lng'] and photo['lat'] == cphoto['lat'] and photo['url'] != cphoto['url']:
+                photo['title'] += " " + cphoto['title']
+                photo['url'].append(cphoto['url'])
+                photolist.pop(i)
+            else:
+                i+= 1
+    return photolist
