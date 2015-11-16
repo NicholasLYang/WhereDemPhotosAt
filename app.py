@@ -15,7 +15,6 @@ def home():
 
 @app.route('/map', methods=["GET","POST"])
 def mapPage():
-    print "hello"
     if request.method == "POST":
         form = request.form
         number = form["Number"]
