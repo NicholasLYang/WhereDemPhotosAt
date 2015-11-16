@@ -24,7 +24,6 @@ var CenterLatLng = { lat: {{ address['lat'] }}, lng: {{ address['lng'] }} };
 {% endif %}
 var map;
 var markers=[];
-
 function initMap(){
   map = new google.maps.Map(document.getElementById('map'),{
     center:CenterLatLng,
@@ -38,8 +37,10 @@ function addPhotos(){
   var infoWindow, marker, markerLatLng;
   var bounds = new google.maps.LatLngBounds();
   {% for photo in photos %}
-  var contentstring = ""
-  {% for uri in photo['url'] %}contentstring += '<img src="{{ uri }}"></img>';{% endfor %}
+    var contentstring = ""
+    {% for uri in photo['url'] %}
+    contentstring += '<img src="{{ uri }}"></img>'
+    {% endfor %}
   markerLatLng = { lat : {{ photo['lat'] }} , lng : {{ photo['lng'] }} };
   infoWindow = new google.maps.InfoWindow({
     content:contentstring,
@@ -62,9 +63,9 @@ function addClickers(){
   for( i = 0; i < markers.length ; i++){
     google.maps.event.addListener(markers[i], 'click', function(){
       this.infowindow.open(map,this);
+    });
   }
 }
-
 </script>
 
 <script async defer src ="https://maps.googleapis.com/maps/api/js?key={{gKey}}&callback=initMap"></script>
