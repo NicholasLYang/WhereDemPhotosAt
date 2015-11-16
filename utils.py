@@ -64,7 +64,7 @@ def checkfordupe( photolist ):
         while i < len(photolist):
             cphoto = photolist[i]
             if photo['lng'] == cphoto['lng'] and photo['lat'] == cphoto['lat'] and photo['url'] != cphoto['url']:
-                photo['title'] += " " + cphoto['title']
+                photo['title'] += ", " + cphoto['title']
                 photo['url'].append(cphoto['url'])
                 photolist.pop(i)
             else:

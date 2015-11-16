@@ -38,10 +38,8 @@ function addPhotos(){
   var infoWindow, marker, markerLatLng;
   var bounds = new google.maps.LatLngBounds();
   {% for photo in photos %}
-    var contentstring = ""
-    {% for uri in photo['url'] %}
-    contentstring += '<img src="{{ uri }}"></img>'
-    {% endfor %}
+  var contentstring = ""
+  {% for uri in photo['url'] %}contentstring += '<img src="{{ uri }}"></img>';{% endfor %}
   markerLatLng = { lat : {{ photo['lat'] }} , lng : {{ photo['lng'] }} };
   infoWindow = new google.maps.InfoWindow({
     content:contentstring,
@@ -62,12 +60,8 @@ function addPhotos(){
 }
 function addClickers(){
   for( i = 0; i < markers.length ; i++){
-    google.maps.event.addListener(markers[i], 'mouseover', function(){
+    google.maps.event.addListener(markers[i], 'click', function(){
       this.infowindow.open(map,this);
-    });
-    google.maps.event.addListener(markers[i], 'mouseclick', function(){
-      this.infowindow.close(map,this);
-    });
   }
 }
 

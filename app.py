@@ -15,7 +15,7 @@ def home():
 
 @app.route('/map', methods=["GET","POST"])
 def mapPage():
-'''
+    '''
 Takes the info from the form, uses it to search through flickr, then takes these locations and puts them in the map. If there's no photos, the map just returns the address
 If there's less photos than expected, an error messgae is sent to map.html
 '''
@@ -33,7 +33,7 @@ If there's less photos than expected, an error messgae is sent to map.html
             center = utils.getLatLng(form['Address'])
             return render_template("map.html", address=center, API_KEY=gKey)
         if len(searchphotos) < int(number):
-            error = "Only " + len(searchphotos) + " photos were found"
+            error = "Only " + str(len(searchphotos)) + " photos were found"
             return render_template("map.html", photos=photos, error=error, API_KEY=gKey)
         else:
             return render_template("map.html", photos=photos, API_KEY=gKey)
