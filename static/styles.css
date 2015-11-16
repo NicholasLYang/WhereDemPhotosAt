@@ -10,6 +10,20 @@ html,body{
 #map{
     height:100%;
 }
+.btn{
+    text-align: center;
+    display: block;
+    border:transparent;
+    position:absolute;
+    outline:none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 200%;
+    color:#00000;
+    background-color: transparent;
+    left: 10%;
+    top: 3%;
+    width: 100px
+}
 
 h1{
 
