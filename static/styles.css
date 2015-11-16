@@ -1,4 +1,5 @@
 html,body{
+    font-family: Helvetica, Arial, sans-serif;    
     height:100%;
     margin:0;
     padding:0;
@@ -11,10 +12,11 @@ html,body{
 }
 
 h1{
+
     background-color: rgb(220,220,220);
     color: rgb(80,120,255);
     text-align: center;
-
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 40px;
 }
 
@@ -28,7 +30,7 @@ form{
     padding-right: 70%;
     width: 1130px;
     
-    font-family: "Arial", "Arial", sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 30px;
     font-weight: bold;
 }
@@ -37,7 +39,7 @@ form{
     width: 300px;
     height: 35px;
 
-    font-family: "Times New Roman", "Times", serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 25px;
 }
 
@@ -49,7 +51,7 @@ form{
 #submit-button{
     width: 90px;
     height: 35px;
-    font-family: "Times New Roman", "Times", serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 25px;
 }
 
@@ -57,6 +59,6 @@ form{
     line-height:100%;
     text-align: right;
 
-    font-family: "Times New Roman", "Times", serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 20px;
 }
