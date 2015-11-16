@@ -4,7 +4,6 @@ html,body{
     padding:0;
     line-height:200%;
     background-image: url("camera.jpg");
-    #background-color: rgb(210,175,210);
 }
 
 #map{
@@ -17,6 +16,11 @@ h1{
     text-align: center;
 
     font-size: 40px;
+}
+
+h3{
+    background-color: red;
+    
 }
 
 form{
