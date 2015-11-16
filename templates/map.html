@@ -62,12 +62,8 @@ function addPhotos(){
 }
 function addClickers(){
   for( i = 0; i < markers.length ; i++){
-    google.maps.event.addListener(markers[i], 'mouseover', function(){
+    google.maps.event.addListener(markers[i], 'click', function(){
       this.infowindow.open(map,this);
-    });
-    google.maps.event.addListener(markers[i], 'mouseclick', function(){
-      if this.infowindow()
-      this.infowindow.close(map,this);
     });
   }
 }
