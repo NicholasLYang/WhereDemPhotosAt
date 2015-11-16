@@ -24,7 +24,6 @@ var CenterLatLng = { lat: {{ address['lat'] }}, lng: {{ address['lng'] }} };
 {% endif %}
 var map;
 var markers=[];
-
 function initMap(){
   map = new google.maps.Map(document.getElementById('map'),{
     center:CenterLatLng,
@@ -67,7 +66,6 @@ function addClickers(){
     });
   }
 }
-
 </script>
 
 <script async defer src ="https://maps.googleapis.com/maps/api/js?key={{gKey}}&callback=initMap"></script>

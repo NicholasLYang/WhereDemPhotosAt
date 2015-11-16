@@ -4,6 +4,7 @@ fKey = '20dd8b0f53a96c73c31c2f9ec7a22c9f'
 gKey ="AIzaSyDbrIKnZ-fJcUxd636duQL8khuiekjC5pQ"
 
 def getLatLng(address):
+# Gets latitude, longitude
     uri = "https://maps.googleapis.com/maps/api/geocode/json?key=%(key)s&address=%(address)s"
     url = uri%({ "key":gKey, "address":address.replace(' ', '%20') })
     request = urllib2.urlopen(url)
@@ -63,7 +64,7 @@ def checkfordupe( photolist ):
         while i < len(photolist):
             cphoto = photolist[i]
             if photo['lng'] == cphoto['lng'] and photo['lat'] == cphoto['lat'] and photo['url'] != cphoto['url']:
-                photo['title'] += " " + cphoto['title']
+                photo['title'] += ", " + cphoto['title']
                 photo['url'].append(cphoto['url'])
                 photolist.pop(i)
             else:
