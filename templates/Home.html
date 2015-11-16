@@ -4,13 +4,13 @@ WhereDemPhotosAt
 {% endblock %}
 {% block body %}
 <h1>Find where photos are taken</h1>
-
+<br>
 <form action="/map" method="POST">
-Tag: <input type="text" name="Tag" placeholder="tag"><br>
-Address: <input type = "text" name = "Address" placeholder = "Address" required><br>
-Number of Photos: <input type="range" id = "numberslider" name="Number" min="1" max="20" Value="1"><div id="number">1 photo</div><br>
-Radius: <input type="range" id = "radiusslider" name="Radius" min="1" max="32" Value="1"><div id="radius">1 km</div><br>
-<input type="submit" name="button" value ="submit" class ="button">
+Tag: <input type="text" class="tag-address" name="Tag" placeholder="tag"><br>
+Address: <input type="text" class="tag-address" name="Address" placeholder="Address" required><br><br>
+Number of Photos: <input type="range" id="numberslider" name="Number" min="1" max="20" Value="1"><div id="number">1 photo</div><br>
+Radius: <input type="range" id="radiusslider" name="Radius" min="1" max="32" Value="1"><div id="radius">1 km</div><br>
+<input type="submit" id="submit-button" name="button" value ="submit" class ="button">
 </form>
 
 {% endblock %}
