@@ -7,8 +7,11 @@
 </head>
 
 <body>
-
-
+<center>
+{% if error %}
+  <h3>{{error}}</h3>
+{% endif %}
+</center>
 <button type="button" class="btn"><a href="/home"> Home </a></button>
 
   {% block body %}

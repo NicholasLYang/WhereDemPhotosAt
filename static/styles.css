@@ -8,21 +8,11 @@ html,body{
 }
 
 #map{
-    height:50%;
-}
-.btn{
-    text-align: center;
-    display: block;
-    border:transparent;
     position:absolute;
-    outline:none;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 200%;
-    color:#00000;
-    background-color: transparent;
+    top:10%;
+    bottom:10%;
     left: 10%;
-    top: 3%;
-    width: 100px
+    right: 10%;
 }
 
 .btn{
@@ -35,18 +25,16 @@ html,body{
     font-size: 200%;
     color:#00000;
     background-color: transparent;
-    left: 10%;
-    top: 3%;
+    left: 3%;
+    top: 93%;
     width: 100px
 }
 
-    padding: 40px;
-    font-size: 30px;
-    text-align: center;
+
 h1{
+    
 
     background-color: rgb(220,220,220);
-    background
     color: rgb(80,120,255);
     text-align: center;
     font-family: Helvetica, Arial, sans-serif;
