@@ -29,6 +29,9 @@ def mapPage():
         if len(searchphotos) == 0:
             center = utils.getLatLng(form['Address'])
             return render_template("map.html", address=center, API_KEY=gKey)
+        if len(searchphotos) == 1:
+            error = "Only one photo was found"
+            return render_template("map.html", photos=photos, error=error, API_KEY=gKey)
         if len(searchphotos) < int(number):
             error = "Only " + str(len(searchphotos)) + " photos were found"
             return render_template("map.html", photos=photos, error=error, API_KEY=gKey)
